@@ -1,4 +1,7 @@
 package com.projeto.resource;
 
-public class Resource {
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ClienteResource {
 }

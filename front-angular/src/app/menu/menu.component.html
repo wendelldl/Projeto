@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" [routerLink]="['/home']">ProjetoAmbev</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <div class="dropdown" dropdown>
+                <a dropdownToggle class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    Cadastro</a>
+                <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li role="presentation">
+                        <a role="menuitem" [routerLink]="['/cadastro-cliente']" data-toggle="dropdown-item"
+                            class="dropdown-item">
+                            Cliente</a></li>
+                    <li role="presentation">
+                        <a role="menuitem" [routerLink]="['/cadastro-vendedor']" data-toggle="dropdown-item"
+                            class="dropdown-item">
+                            Vendedor</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown" dropdown>
+                <a dropdownToggle class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    Relatórios</a>
+                <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li role="presentation">
+                        <a role="menuitem" [routerLink]="['/relatorio-clientes']" data-toggle="dropdown-item"
+                            class="dropdown-item">
+                            Clientes</a></li>
+                    <li role="presentation">
+                        <a role="menuitem" [routerLink]="['/relatorio-vendedores']" data-toggle="dropdown-item"
+                            class="dropdown-item">
+                            Vendedores</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown" dropdown>
+                    <a dropdownToggle class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        Gerencial</a>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li role="presentation">
+                            <a role="menuitem" [routerLink]="['/distribuicao-clientes']" data-toggle="dropdown-item"
+                                class="dropdown-item">
+                                Distribuição de Cliente</a></li>
+                    </ul>
+                </div>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
