@@ -9,7 +9,7 @@ import java.util.List;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="codigo_cliente")
     private Long codigo_cliente;
 
@@ -24,6 +24,9 @@ public class Cliente {
 
     @Column(name="longitude")
     private String longitude;
+
+    @ManyToOne
+    @JoinColumn(name="codigo_vendedor")
 
     public Long getCodigo_cliente() {
         return codigo_cliente;

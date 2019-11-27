@@ -1,12 +1,10 @@
 package com.projeto.service;
 
-import com.projeto.model.Cliente;
 import com.projeto.model.Vendedor;
 import com.projeto.repository.VendedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 

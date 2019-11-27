@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/service")
+@RequestMapping("/cliente")
 public class ClienteController {
 
     @Autowired
@@ -16,24 +16,32 @@ public class ClienteController {
 
     private Cliente cliente = new Cliente();
 
-    public List<Cliente> listar(){
-        return clienteService.listar();
-    }
-
-    public void novo(){
+    @RequestMapping(value = "/novo", method = RequestMethod.POST)
+    public void novo() {
         cliente = new Cliente();
     }
 
-    public void adicionar(){
+    @RequestMapping(value = "/alterar", method = RequestMethod.PUT)
+    public void alterar() {
         clienteService.salvar(cliente);
+        cliente = new Cliente();
     }
 
-    public void alterar(){
-        clienteService.salvar(cliente);
+    @GetMapping(value = "/clientes")
+    public @ResponseBody List<Cliente> clientes() {
+        return this.clienteService.listar();
     }
 
-    public void excluir(){
-        clienteService.excluir(cliente);
+    @RequestMapping(value = "/excluir", method = RequestMethod.DELETE)
+    public void excluir() {
+        clienteService.excluir(cliente.getCodigo_cliente());
+        cliente = new Cliente();
+    }
+
+    @RequestMapping(value = "/adicionar", method = RequestMethod.POST)
+    public void adicionar() {
+        clienteService.salvar(cliente);
+        cliente = new Cliente();
     }
 
     public ClienteService getClienteService() {
