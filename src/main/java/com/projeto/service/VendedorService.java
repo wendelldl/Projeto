@@ -23,8 +23,9 @@ public class VendedorService{
         return vendedorRepository.save(vendedor);
     }
 
-    public void excluir(Long codigo_vendedor){
+    public Vendedor excluir(Long codigo_vendedor){
         vendedorRepository.deleteById(codigo_vendedor);
+        return null;
     }
 
     public Vendedor importar(Vendedor vendedor){

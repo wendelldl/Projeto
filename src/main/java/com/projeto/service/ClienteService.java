@@ -23,8 +23,9 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public void excluir(Long codigo_cliente){
+    public Cliente excluir(Long codigo_cliente){
         clienteRepository.deleteById(codigo_cliente);
+        return null;
     }
 
     public Cliente importar(Cliente cliente){

@@ -1,14 +1,16 @@
 package com.projeto.controller;
 
 import com.projeto.model.Cliente;
+import com.projeto.model.ResponseCliModel;
 import com.projeto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
-@RestController()
-@RequestMapping("/cliente")
+@RestController
+@RequestMapping("/clientes")
 public class ClienteController {
 
     @Autowired
@@ -16,32 +18,24 @@ public class ClienteController {
 
     private Cliente cliente = new Cliente();
 
-    @RequestMapping(value = "/novo", method = RequestMethod.POST)
-    public void novo() {
-        cliente = new Cliente();
+    @RequestMapping(method = RequestMethod.POST)
+    public Cliente novo(@RequestBody Cliente cliente) {
+        return clienteService.salvar(cliente);
     }
 
-    @RequestMapping(value = "/alterar", method = RequestMethod.PUT)
-    public void alterar() {
-        clienteService.salvar(cliente);
-        cliente = new Cliente();
+    @RequestMapping(method = RequestMethod.PUT)
+    public Cliente alterar(@RequestBody Cliente cliente) {
+        return clienteService.salvar(cliente);
     }
 
-    @GetMapping(value = "/clientes")
-    public @ResponseBody List<Cliente> clientes() {
+    @GetMapping
+    public List<Cliente> clientes() {
         return this.clienteService.listar();
     }
 
-    @RequestMapping(value = "/excluir", method = RequestMethod.DELETE)
-    public void excluir() {
-        clienteService.excluir(cliente.getCodigo_cliente());
-        cliente = new Cliente();
-    }
-
-    @RequestMapping(value = "/adicionar", method = RequestMethod.POST)
-    public void adicionar() {
-        clienteService.salvar(cliente);
-        cliente = new Cliente();
+    @RequestMapping(method = RequestMethod.DELETE)
+    public Cliente excluir() {
+       return clienteService.excluir(cliente.getCodigo_cliente());
     }
 
     public ClienteService getClienteService() {
