@@ -1,12 +1,10 @@
 package com.projeto.controller;
 
 import com.projeto.model.Cliente;
-import com.projeto.model.ResponseCliModel;
 import com.projeto.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.InputMismatchException;
 import java.util.List;
 
 @RestController
@@ -18,39 +16,29 @@ public class ClienteController {
 
     private Cliente cliente = new Cliente();
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public Cliente novo(@RequestBody Cliente cliente) {
         return clienteService.salvar(cliente);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public Cliente alterar(@RequestBody Cliente cliente) {
+    @PutMapping(value = "/{codigocliente}")
+    public Cliente alterar(@PathVariable(value = "codigocliente")Long codigocliente, @RequestBody Cliente cliente) {
+        cliente.setCodigocliente(codigocliente);
         return clienteService.salvar(cliente);
     }
 
-    @GetMapping
-    public List<Cliente> clientes() {
+    @GetMapping()
+    public List<Cliente> listar() {
         return this.clienteService.listar();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public Cliente excluir() {
-       return clienteService.excluir(cliente.getCodigo_cliente());
+    @GetMapping(value = "/{codigocliente}")
+    public Cliente buscar(@PathVariable(value = "codigocliente") Long codigocliente){
+        return this.clienteService.consultarporcodigo(codigocliente);
     }
 
-    public ClienteService getClienteService() {
-        return clienteService;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setClienteService(ClienteService clienteService) {
-        this.clienteService = clienteService;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    @DeleteMapping(value = "/{codigocliente}")
+    public void excluir(@PathVariable(value = "codigocliente") Long codigocliente) {
+        this.clienteService.excluir(codigocliente);
     }
 }

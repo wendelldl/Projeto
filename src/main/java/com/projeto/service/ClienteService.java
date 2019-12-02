@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 @CrossOrigin(origins  = "http://localhost:4200")
@@ -23,24 +24,24 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public Cliente excluir(Long codigo_cliente){
-        clienteRepository.deleteById(codigo_cliente);
+    public void excluir(Long codigocliente) {
+        clienteRepository.deleteById(codigocliente);
+    }
+
+    public Cliente importar(Cliente cliente) {
         return null;
     }
 
-    public Cliente importar(Cliente cliente){
-        return null;
-    }
-
-    public List<Cliente> listar(){
+    public List<Cliente> listar() {
         return clienteRepository.findAll();
     }
 
-    public Cliente consultarporRazaoSocial(String razaosocial){
+    public Cliente consultarporRazaoSocial(String razaosocial) {
         return clienteRepository.findByRazaosocial(razaosocial);
     }
 
-    public Cliente consultarporcodigo(Long codigo_cliente){
-        return clienteRepository.getOne(codigo_cliente);
+    public Cliente consultarporcodigo(Long codigocliente) {
+        return clienteRepository.getOne(codigocliente);
     }
+
 }

@@ -11,7 +11,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="codigo_cliente")
-    private Long codigo_cliente;
+    private Long codigocliente;
 
     @Column(name = "cnpj")
     private String cnpj;
@@ -25,35 +25,29 @@ public class Cliente {
     @Column(name="longitude")
     private String longitude;
 
-    @ManyToOne
-    @JoinColumn(name="codigo_vendedor")
 
-    public Long getCodigo_cliente() {
-        return codigo_cliente;
+    public Long getCodigocliente() {
+        return codigocliente;
     }
 
-    @NotNull(message = "CNPJ obrigatório ser informado!")
     public String getCnpj() {
         return cnpj;
     }
 
-    @NotNull(message = "Razão social obrigatório ser informada!")
     public String getRazaosocial() {
         return razaosocial;
     }
 
-    @NotNull(message = "Latitude obrigatório ser informada!")
     public String getLatitude() {
         return latitude;
     }
 
-    @NotNull(message = "Longitude obrigatório ser informada!")
     public String getLongitude() {
         return longitude;
     }
 
-    public void setCodigo_cliente(Long codigo_cliente) {
-        this.codigo_cliente = codigo_cliente;
+    public void setCodigocliente(Long codigocliente) {
+        this.codigocliente = codigocliente;
     }
 
     public void setCnpj(String cnpj) {

@@ -14,41 +14,30 @@ public class VendedorController {
     @Autowired
     private VendedorService vendedorService;
 
-    private Vendedor vendedor = new Vendedor();
-
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public Vendedor novo(@RequestBody Vendedor vendedor) {
+        vendedor.isCPF(vendedor.getCpf());
       return vendedorService.salvar(vendedor);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public Vendedor alterar(@RequestBody Vendedor vendedor) {
-       return vendedorService.salvar(vendedor);
+    @PutMapping(value = "/{codigovendedor}")
+    public Vendedor alterar(@PathVariable(value = "codigo_vendedor")Long codigovendedor,@RequestBody Vendedor vendedor) {
+        vendedor.setCodigovendedor(codigovendedor);
+        return vendedorService.salvar(vendedor);
     }
 
     @GetMapping()
-    public List<Vendedor> vendedores() {
+    public List<Vendedor> listar() {
         return this.vendedorService.listar();
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public Vendedor excluir() {
-       return vendedorService.excluir(vendedor.getCodigo_vendedor());
+    @RequestMapping(value = "/{codigovendedor}",  method = RequestMethod.GET)
+    public Vendedor buscar(@PathVariable(value = "codigovendedor") Long codigovendedor){
+        return this.vendedorService.consultarporcodigo(codigovendedor);
     }
 
-    public VendedorService getVendedorService() {
-        return vendedorService;
-    }
-
-    public void setVendedorService(VendedorService vendedorService) {
-        this.vendedorService = vendedorService;
-    }
-
-    public Vendedor getVendedor() {
-        return vendedor;
-    }
-
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
+    @DeleteMapping(value = "/{codigovendedor}")
+    public void excluir(@PathVariable(value = "codigovendedor") Long codigovendedor) {
+        this.vendedorService.excluir(codigovendedor);
     }
 }

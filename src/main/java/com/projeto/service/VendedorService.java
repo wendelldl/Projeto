@@ -16,6 +16,7 @@ public class VendedorService{
     private VendedorRepository vendedorRepository;
 
     public Vendedor salvar(Vendedor vendedor) {
+        vendedor.isCPF(vendedor.getCpf());
         return vendedorRepository.save(vendedor);
     }
 
@@ -23,9 +24,8 @@ public class VendedorService{
         return vendedorRepository.save(vendedor);
     }
 
-    public Vendedor excluir(Long codigo_vendedor){
-        vendedorRepository.deleteById(codigo_vendedor);
-        return null;
+    public void excluir(Long codigovendedor){
+        vendedorRepository.deleteById(codigovendedor);
     }
 
     public Vendedor importar(Vendedor vendedor){
@@ -36,11 +36,11 @@ public class VendedorService{
         return vendedorRepository.findAll();
     }
 
-    public Vendedor consultarporNomeVendedor(String nomevendedor){
+    public Vendedor consultarpornomevendedor(String nomevendedor){
         return vendedorRepository.findByNomevendedor(nomevendedor);
     }
 
-    public Vendedor consultarporcodigo(Long codigo_vendedor){
-        return vendedorRepository.getOne(codigo_vendedor);
+    public Vendedor consultarporcodigo(Long codigovendedor){
+        return vendedorRepository.getOne(codigovendedor);
     }
 }
