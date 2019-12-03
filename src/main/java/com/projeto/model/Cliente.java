@@ -5,26 +5,26 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
+@SequenceGenerator(name="codcliente_sequence", allocationSize = 1)
 @Table(name="cliente")
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "codcliente_sequence")
     @Column(name="codigo_cliente")
     private Long codigocliente;
-
     @Column(name = "cnpj")
     private String cnpj;
-
     @Column(name="razaosocial")
     private String razaosocial;
-
     @Column(name="latitude")
     private String latitude;
-
     @Column(name="longitude")
     private String longitude;
 
+    @ManyToOne
+    @JoinColumn(name = "codigo_vendedor")
+    private Vendedor vendedor;
 
     public Long getCodigocliente() {
         return codigocliente;

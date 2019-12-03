@@ -16,14 +16,13 @@ public class VendedorController {
 
     @PostMapping
     public Vendedor novo(@RequestBody Vendedor vendedor) {
-        vendedor.isCPF(vendedor.getCpf());
       return vendedorService.salvar(vendedor);
     }
 
-    @PutMapping(value = "/{codigovendedor}")
+    @PutMapping(value = "/{codigo_vendedor}")
     public Vendedor alterar(@PathVariable(value = "codigo_vendedor")Long codigovendedor,@RequestBody Vendedor vendedor) {
         vendedor.setCodigovendedor(codigovendedor);
-        return vendedorService.salvar(vendedor);
+        return vendedorService.alterar(vendedor);
     }
 
     @GetMapping()
@@ -31,13 +30,13 @@ public class VendedorController {
         return this.vendedorService.listar();
     }
 
-    @RequestMapping(value = "/{codigovendedor}",  method = RequestMethod.GET)
-    public Vendedor buscar(@PathVariable(value = "codigovendedor") Long codigovendedor){
+    @RequestMapping(value = "/{codigo_vendedor}",  method = RequestMethod.GET)
+    public Vendedor buscar(@PathVariable(value = "codigo_vendedor") Long codigovendedor){
         return this.vendedorService.consultarporcodigo(codigovendedor);
     }
 
-    @DeleteMapping(value = "/{codigovendedor}")
-    public void excluir(@PathVariable(value = "codigovendedor") Long codigovendedor) {
+    @DeleteMapping(value = "/{codigo_vendedor}")
+    public void excluir(@PathVariable(value = "codigo_vendedor") Long codigovendedor) {
         this.vendedorService.excluir(codigovendedor);
     }
 }

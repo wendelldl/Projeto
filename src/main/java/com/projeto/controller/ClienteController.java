@@ -21,10 +21,10 @@ public class ClienteController {
         return clienteService.salvar(cliente);
     }
 
-    @PutMapping(value = "/{codigocliente}")
-    public Cliente alterar(@PathVariable(value = "codigocliente")Long codigocliente, @RequestBody Cliente cliente) {
+    @PutMapping(value = "/{codigo_cliente}")
+    public Cliente alterar(@PathVariable(value = "codigo_cliente")Long codigocliente, @RequestBody Cliente cliente) {
         cliente.setCodigocliente(codigocliente);
-        return clienteService.salvar(cliente);
+        return clienteService.alterar(cliente);
     }
 
     @GetMapping()
@@ -32,13 +32,13 @@ public class ClienteController {
         return this.clienteService.listar();
     }
 
-    @GetMapping(value = "/{codigocliente}")
-    public Cliente buscar(@PathVariable(value = "codigocliente") Long codigocliente){
+    @GetMapping(value = "/{codigo_cliente}")
+    public Cliente buscar(@PathVariable(value = "codigo_cliente") Long codigocliente){
         return this.clienteService.consultarporcodigo(codigocliente);
     }
 
-    @DeleteMapping(value = "/{codigocliente}")
-    public void excluir(@PathVariable(value = "codigocliente") Long codigocliente) {
+    @DeleteMapping(value = "/{codigo_cliente}")
+    public void excluir(@PathVariable(value = "codigo_cliente") Long codigocliente) {
         this.clienteService.excluir(codigocliente);
     }
 }

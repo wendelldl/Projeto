@@ -16,7 +16,6 @@ public class VendedorService{
     private VendedorRepository vendedorRepository;
 
     public Vendedor salvar(Vendedor vendedor) {
-        vendedor.isCPF(vendedor.getCpf());
         return vendedorRepository.save(vendedor);
     }
 
